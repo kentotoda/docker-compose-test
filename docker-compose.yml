@@ -1,10 +1,18 @@
-chat:
+nodeapp:
   build: .
   container_name: "nodeapp"
   command: node index.js
   ports:
     - '3000:3000'
   volumes:
-    - .:/home/app/chat
-    - /home/app/chat/node_modules
-
+    - ./server:/home/app/nodeapp
+    - /home/app/nodeapp/node_modules
+nginx-proxy:
+  image: nginx
+  container_name: "nginx"
+  ports:
+    - '8080:8080'
+  volumes:
+    - ./nginx:/etc/nginx/conf.d:ro
+  links:
+    - 'nodeapp'

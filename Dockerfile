@@ -4,15 +4,15 @@ RUN useradd --user-group --create-home --shell /bin/false app
 
 ENV HOME=/home/app
 
-COPY package.json $HOME/chat/
+COPY package.json $HOME/nodeapp/
 RUN chown -R app:app $HOME/*
 
 USER app
-WORKDIR $HOME/chat
+WORKDIR $HOME/nodeapp
 RUN npm install
 
 USER root
-COPY . $HOME/chat
+COPY . $HOME/nodeapp
 RUN chown -R app:app $HOME/*
 USER app
 
