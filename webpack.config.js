@@ -1,7 +1,10 @@
 module.exports = {
-  entry: './client/index.js',
+  entry: {
+    js: "./client/index.js",
+    html: "./client/index.html",
+  },  
   output: {
-    path: './out',
+    path: __dirname + "/out",
     filename: 'bundle.js',
   },
   module: {
@@ -14,6 +17,10 @@ module.exports = {
           presets: ['es2015', 'react'],
         },
       },
+      {
+        test: /\.html$/,
+        loader: 'file?name=[name].[ext]'
+      },
     ],
-  }
+  },
 };
