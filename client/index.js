@@ -4,14 +4,29 @@ import request from 'superagent';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      items: [],
+    };
+  }
+
   componentDidMount() {
-    console.log("mount");
+    request.get('/api/items').end((err, res) => {
+      this.setState({
+        items: res.body,
+      });
+    });
   }
 
   render() {
     return (
       <div>
-        Hoge
+        <h1>Docker Compose Test</h1>
+        <ul>
+          { this.state.items.map((item, index) => <li key={index}>{item}</li>)}
+        </ul>
       </div>
     );
   }

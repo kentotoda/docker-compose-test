@@ -1,7 +1,16 @@
 const app = require('express')();
-console.log("START");
-app.get('/', (req, res) => {
-  res.sendFile(`${__dirname}/index.html`);
+
+const PORT = 3000;
+
+app.use((req, res, next) => {
+  console.log(req.url);
+  next();
 });
 
-app.listen(3000, () => console.log('LISTEN:3000 on docker'));
+app.get('/items', (req, res) => {
+  res.send([
+    'hoge', 'huga'
+  ]);
+});
+
+app.listen(PORT, () => console.log(`LISTEN:${PORT} on docker`));
