@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "run": "webpack --config webpack.config.js --watch && sudo docker-compose up",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Keita Moromizato <keita.moromi@gmail.com>",
